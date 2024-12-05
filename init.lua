@@ -18,4 +18,12 @@ end
 
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
+
+-- vim.cmd('set guicursor=n-v-c:block-Cursor/iCursor-blinkon0,i-ci:block-Cursor/iCursor,r-cr:hor20-Cursor/iCursor')
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+
+-- neovide
+vim.o.guifont = "FiraCode Nerd Font"
+vim.g.neovide_scale_factor = 1.6
+
 require "plugins"

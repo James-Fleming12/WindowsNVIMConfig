@@ -17,10 +17,10 @@ opt.cursorline = true
 
 -- Indenting
 opt.expandtab = true
-opt.shiftwidth = 2
+opt.shiftwidth = 4
 opt.smartindent = true
-opt.tabstop = 2
-opt.softtabstop = 2
+opt.tabstop = 4
+opt.softtabstop = 4
 
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
@@ -31,6 +31,11 @@ opt.mouse = "a"
 opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
+opt.relativenumber = true
+
+vim.wo.wrap = false
+opt.cursorline = true
+vim.o.guicursor = "n-v-i-c:block"
 
 -- disable nvim intro
 opt.shortmess:append "sI"
@@ -57,11 +62,24 @@ for _, provider in ipairs { "node", "perl", "python3", "ruby" } do
 end
 
 -- add binaries installed by mason.nvim to path
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
 -------------------------------------- autocmds ------------------------------------------
 local autocmd = vim.api.nvim_create_autocmd
+
+-- vim.cmd [[
+--    augroup ilikecursorline
+--       autocmd VimEnter * :highlight CursorLine guibg=#282a2e
+--    augroup END
+-- ]]
+
+autocmd("FileType", {
+  pattern = "markdown", 
+  callback = function()
+    require("cmp").setup.buffer { enabled = false }
+  end,
+})
 
 -- dont list quickfix buffers
 autocmd("FileType", {
@@ -104,6 +122,32 @@ autocmd("BufWritePost", {
 
     require("base46").load_all_highlights()
     -- vim.cmd("redraw!")
+  end,
+})
+
+-- user event that loads after UIEnter + only if file buf is there
+vim.api.nvim_create_autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
+  group = vim.api.nvim_create_augroup("NvFilePost", { clear = true }),
+  callback = function(args)
+    local file = vim.api.nvim_buf_get_name(args.buf)
+    local buftype = vim.api.nvim_buf_get_option(args.buf, "buftype")
+
+    if not vim.g.ui_entered and args.event == "UIEnter" then
+      vim.g.ui_entered = true
+    end
+
+    if file ~= "" and buftype ~= "nofile" and vim.g.ui_entered then
+      vim.api.nvim_exec_autocmds("User", { pattern = "FilePost", modeline = false })
+      vim.api.nvim_del_augroup_by_name "NvFilePost"
+
+      vim.schedule(function()
+        vim.api.nvim_exec_autocmds("FileType", {})
+
+        if vim.g.editorconfig then
+          require("editorconfig").config(args.buf)
+        end
+      end, 0)
+    end
   end,
 })
 

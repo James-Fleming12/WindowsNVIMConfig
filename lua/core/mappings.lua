@@ -16,6 +16,21 @@ M.general = {
   },
 
   n = {
+    ["<leader>s"] = {":Telescope lsp_document_symbols<CR>", "Document Symbols", opts={silent=true}},
+    ["<leader>d"] = {":Telescope lsp_definitions<CR>", "Go to Definition", opts={silent=true}},
+    ["<leader>td"] = {":colorscheme gruber-darker<CR>:colorscheme gruber-darker<CR>:highlight CursorLine guibg=None<CR>", "Gruber-Darker Theme",opts={silent=true}},
+    ["<leader>tv"] = {":colorscheme vitesse<CR>:highlight CursorLine guibg=None<CR>", "Vitesse Theme", opts={silent=true}},
+    ["<leader>ts"] = {":colorscheme shinjuku<CR>", "Shinjuku Theme", opts={silent=true}},
+    ["<leader>tm"] = {":colorscheme monokai-pro<CR>:colorscheme monokai-pro<CR>", "Monokai-Pro Theme", opts={silent=true}},
+    
+    ["<leader>l"] = {
+        function()
+            require("nabla").popup({ border = "rounded" })
+        end,
+        "Show Nable Popup",
+        opts={silent=true}
+    },
+
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
@@ -62,7 +77,9 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["<"] = { "<gv", "Indent line" },
-    [">"] = { ">gv", "Indent line" },
+    [">"] = { ">gv", "Indent line" },    
+    ["<leader>s"] = {":Telescope lsp_document_symbols<CR>", "Document Symbols", opts = {silent=true}},
+    ["<leader>d"] = {":Telescope lsp_definitions<CR>", "Go to Definition", opts = {silent=true}},
   },
 
   x = {
