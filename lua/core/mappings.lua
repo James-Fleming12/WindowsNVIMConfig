@@ -18,11 +18,12 @@ M.general = {
   n = {
     ["<leader>s"] = {":Telescope lsp_document_symbols<CR>", "Document Symbols", opts={silent=true}},
     ["<leader>d"] = {":Telescope lsp_definitions<CR>", "Go to Definition", opts={silent=true}},
-    ["<leader>td"] = {":colorscheme gruber-darker<CR>:colorscheme gruber-darker<CR>:highlight CursorLine guibg=None<CR>", "Gruber-Darker Theme",opts={silent=true}},
-    ["<leader>tv"] = {":colorscheme vitesse<CR>:highlight CursorLine guibg=None<CR>", "Vitesse Theme", opts={silent=true}},
-    ["<leader>ts"] = {":colorscheme shinjuku<CR>", "Shinjuku Theme", opts={silent=true}},
-    ["<leader>tm"] = {":colorscheme monokai-pro<CR>:colorscheme monokai-pro<CR>", "Monokai-Pro Theme", opts={silent=true}},
-    
+    ["<leader>td"] = {":colorscheme gruber-darker<CR>:highlight CursorLine guibg=None<CR>", "Gruber-Darker Theme",opts={silent=true}},
+    ["<leader>tv"] = {":colorscheme vitesse<CR>:highlight CursorLine guibg=None<CR>:hi Cursor guibg=white<CR>", "Vitesse Theme", opts={silent=true}},
+    ["<leader>ts"] = {":colorscheme shinjuku<CR>:hi Cursor guifg=black guibg=white<CR>", "Shinjuku Theme", opts={silent=true}},
+    ["<leader>tr"] = {":colorscheme retrobox<CR>", "Retrobox Theme", opts={silent=true}},
+    ["<leader>tm"] = {":colorscheme mellifluous<CR>:hi CursorLine guibg=None<CR>:hi @markup.heading.2 guibg=clear<CR>:hi LineNr guibg=None<CR>:hi CursorLineNr guibg=None guifg=white<CR>", "Mellifluous Theme", opts={silent=true}},
+
     ["<leader>l"] = {
         function()
             require("nabla").popup({ border = "rounded" })
