@@ -24,6 +24,11 @@ local plugins = {
     { "samir-roy/shinjuku.nvim" },
     { "jbyuki/nabla.nvim" },
     { "ramojus/mellifluous.nvim" },
+    { "olivercederborg/poimandres.nvim", 
+        config = function() 
+            require('poimandres').setup{}
+        end
+    },
 }
 
 -- checking something

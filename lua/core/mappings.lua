@@ -24,6 +24,7 @@ M.general = {
     ["<leader>tr"] = {":colorscheme retrobox<CR>", "Retrobox Theme", opts={silent=true}},
     ["<leader>tm"] = {":colorscheme mellifluous<CR>:Mellifluous mountain<CR>:hi CursorLine guibg=None<CR>:hi @markup.heading.2 guibg=clear<CR>:hi LineNr guibg=None<CR>:hi CursorLineNr guibg=None guifg=white<CR>", "Mellifluous Theme", opts={silent=true}},
     ["<leader>tt"] = {":colorscheme mellifluous<CR>:Mellifluous tender<CR>:hi CursorLine guibg=None<CR>:hi @markup.heading.2 guibg=clear<CR>:hi LineNr guibg=None<CR>:hi CursorLineNr guibg=None guifg=white<CR>", "Tender Theme", opts={silent=true}},
+    ["<leader>tp"] = {":colorscheme poimandres<CR>:hi Cursor guifg=black guibg=#FFF56A<CR>:hi @markup.heading.2 guifg=#88C0D0<CR>", "Poimandres Theme", opts={silent=true}},
 
     ["<leader>l"] = {
         function()
